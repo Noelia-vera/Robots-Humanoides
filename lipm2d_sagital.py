@@ -23,14 +23,14 @@ TIME_DELTA = 0.1 # s
 #Valor de R=0.968
 INTERVALO = 105+(106.25*HEIGHT) 
 #la ecuación que define como se modifica esta variable es AY=0.1+1.075*HEIGHT
-#Valir de R=0.997
+#Valor de R=0.998
 AY = 0.1+(HEIGHT*1.075) # PARA MODIFICAR LA ESCALA EN Y
 
 fig, ax = plt.subplots(2, 1, gridspec_kw={'height_ratios': [3, 1]})
 ln, = ax[0].plot([], [], marker='o')
 ln2, = ax[1].plot([], [], marker='o')
 longitudes_articulacion = []
-AYPLOT = 86.66+(HEIGHT*41.66) #en funcion de la variabla HEIGHT
+AYPLOT = 86.66+(HEIGHT*41.66) #en funcion de la variable HEIGHT
 def init():
     ax[0].set_xlim(0, MAX_X)
     ax[0].set_ylim(-0.1, AY)

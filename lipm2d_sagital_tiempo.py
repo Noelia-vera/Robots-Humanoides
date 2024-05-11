@@ -14,16 +14,15 @@ from matplotlib.animation import FuncAnimation
 
 from time import sleep
 
-MAX_X = 100000
+MAX_X = 10000
 #Solo se pide por pantalla la distancia para ajustar los ejes en caso de querer modificar esta variable
 APELLIDO = (input("Por favor, ingresa un apellido/palabra: "))  # Convertir la entrada en un número flotante
 HEIGHT = 0.2*len(APELLIDO)
 G = 9.8
 TIME_DELTA  = float(input("Por favor, ingresa un tiempo: "))
-#la ecuación que define como se modifica esta variable es INTERVALO=(13800*HEIGHT)-2360
+#la ecuación que define como se modifica esta variable es INTERVALO = (HEIGHT*10850)-885
 #Valor de R=0.99
-
-INTERVALO = (HEIGHT*10850)-885
+INTERVALO=(500*TIME_DELTA)+150
 #la ecuación que define como se modifica esta variable es AY=0.1+1.075*HEIGHT
 #Valor de R=0.99
 AY = 0.1+(HEIGHT*1.075) # PARA MODIFICAR LA ESCALA EN Y
@@ -32,7 +31,7 @@ fig, ax = plt.subplots(2, 1, gridspec_kw={'height_ratios': [3, 1]})
 ln, = ax[0].plot([], [], marker='o')
 ln2, = ax[1].plot([], [], marker='o')
 longitudes_articulacion = []
-AYPLOT = (TIME_DELTA*15000) + 2500
+AYPLOT= (TIME_DELTA*500)+50
 def init():
     ax[0].set_xlim(0, MAX_X)
     ax[0].set_ylim(-0.1, AY)
@@ -79,12 +78,10 @@ def incremento(separation,offset):
         lista.append(i) 
         i += separation
     return lista
-#el valor de offset límite para que no se caiga hacia atrás se ha obtenido con regresion lineal
-# offset =59.07*(HEIGHT*9.71)
+
 
 class Simulator():
     def __init__(self):
-        #offset = 59.07*(HEIGHT*9.71) valor limite para que no vaya hacia atrás
         self.zmp_x = incremento(INTERVALO,0)
         self.zmp_x_change = incremento(INTERVALO,INTERVALO/2)
         self.zmp_idx = 0
